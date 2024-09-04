@@ -1,0 +1,22 @@
+{
+    "_id": "_design/reviews",
+    "_rev": "1",
+    "views": {
+        "by_id": {
+            "map": "function(doc) { if (doc.type === 'review' && doc._id) { emit(doc._id, doc); } }"
+        },
+        "by_rating": {
+            "map": "function(doc) { if (doc.type === 'review' && doc.rating) { emit(doc.rating, doc); } }"
+        },
+        "by_comment": {
+            "map": "function(doc) { if (doc.type === 'review' && doc.comment) { emit(doc.comment, doc); } }"
+        },
+        "by_user_id": {
+            "map": "function(doc) { if (doc.type === 'review' && doc.user_id) { emit(doc.user_id, doc); } }"
+        },
+        "by_videogame_id": {
+            "map": "function(doc) { if (doc.type === 'review' && doc.videogame_id) { emit(doc.videogame_id, doc); } }"
+        }
+    },
+    "language": "javascript"
+  }

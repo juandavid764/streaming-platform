@@ -1,0 +1,21 @@
+{
+    "_id": "_design/videogames",
+    "_rev": "1",
+    "views": {
+        "by_id": {
+            "map": "function(doc) { if (doc._id && doc.type === 'videogame') { emit(doc._id, doc); }}"
+        },
+        "by_name": {
+            "map": "function(doc) { if (doc.name && doc.type === 'videogame') { emit(doc.name, doc); }}"
+        },
+        "by_genre": {
+            "map": "function(doc) { if (doc.genre && doc.type === 'videogame') { emit(doc.genre, doc); }}"
+        },
+        "by_units_sold": {
+            "map": "function(doc) { if (doc.units_sold && doc.type === 'videogame') { emit(doc.units_sold, doc); }}"
+        },
+        "by_publisher_id": {
+            "map": "function(doc) { if (doc.publisher_id && doc.type === 'videogame') { emit(doc.publisher_id, doc); }}"
+        }
+    }
+}
