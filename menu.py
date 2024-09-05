@@ -1,8 +1,8 @@
 import json
-
+from db import db
 
 # importamos las operaciones del crud que ya definimos
-from crud_operations import create_record, read_record, update_record, delete_record, get_all_records, publishers_with_high_sales
+from crud_operations import create_record, read_record, update_record, delete_record, get_all_records, publishers_with_high_sales, document_exists
 
 
 def convert_to_json(collection):
@@ -22,3 +22,5 @@ Select wanted option:
 7. get out
 ---------------------------------------""")
         option1 = input("option:  ")
+        if (option1 == "1"):
+            print("create_menu")

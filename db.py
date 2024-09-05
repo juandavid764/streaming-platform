@@ -1,7 +1,7 @@
 import couchdb
 
-#Archivo para realizar la conexion a la bd
-couch = couchdb.Server('http://juan:1234@localhost:5984/')
+# Archivo para realizar la conexion a la bd
+couch = couchdb.Server('http://sebastian:1234@localhost:5984/')
 
 
 db_name = 'streaming-platform'
