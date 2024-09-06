@@ -2,7 +2,7 @@
 from crud_operations import delete_record
 
 
-def readOption():
+def deleteOption():
     print("Delete menu:")
     print("1. Review")
     print("2. Publisher")
