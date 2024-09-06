@@ -41,6 +41,7 @@ def delete_record(id):
     document = read_record(id)
     if document:
         db.delete(document)
+        print("Successful elimination")
     else:
         print("Document haven't found")
 
