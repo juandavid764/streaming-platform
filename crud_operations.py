@@ -6,6 +6,15 @@ from couchdb.http import ResourceConflict
 db_url = f"http://juan:1234@localhost:5984/streaming-platform"
 
 
+def get_document_templates(db):
+    templates = {}
+    for doc_id in db:
+        if 'template_' in doc_id:  # Check if the document is a template"
+            template = db[doc_id]
+            templates[template['type']] = template['fields']
+    return templates
+
+
 def document_exists(db, doc_id):
     return doc_id in db
 
@@ -13,7 +22,7 @@ def document_exists(db, doc_id):
 def create_record(record):
     try:
         db.save(record)
-        print("Insercion exitosa")
+        print("document created")
     except ResourceConflict:
         print("document already exist")
 
