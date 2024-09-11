@@ -3,8 +3,6 @@ from db import db
 
 
 # Function to create a document of any type
-
-
 def create_document():
     # Obtener las plantillas de los documentos
     templates = get_document_templates(db)
