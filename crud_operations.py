@@ -3,9 +3,6 @@ import json
 from db import db
 from couchdb.http import ResourceConflict
 
-db_url = f"http://juan:1234@localhost:5984/streaming-platform"
-
-
 def get_document_templates(db):
     templates = {}
     for doc_id in db:
@@ -53,45 +50,3 @@ def delete_record(id):
         print("Successful elimination")
     else:
         print("Document haven't found")
-
-
-def get_all_records(type=None):
-    query = {
-        "selector": {}
-    }
-    if type:
-        query["selector"]["type"] = type
-
-    try:
-        response = requests.post(
-            f'{db_url}/_find',
-            headers={"Content-Type": "application/json"},
-            data=json.dumps(query)
-        )
-        if response.status_code == 200:
-
-            results = response.json().get('docs', [])
-            return results
-        else:
-            print(f"Error: {response.status_code} - {response.text}")
-            return []
-
-    except requests.RequestException as e:
-        print(f"An error occurred: {e}")
-        return []
-
-
-# queries
-# Getting publishers with more than 500000TotalSales
-def publishers_with_high_sales():
-    query = {
-        "selector": {
-            "type": "publisher",
-            "totalsales": {"$gt": 500000}  # "Greather than" operator
-        }
-    }
-
-    response = requests.post(
-        f'{db_url}/_find', headers={"Content-Type": "application/json"}, data=json.dumps(query))
-    results = response.json().get('docs', [])
-    return results
