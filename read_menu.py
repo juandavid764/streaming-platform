@@ -1,13 +1,15 @@
-import json
-from crud_operations import read_record
+def read_menu():
+    import json
+    from crud_operations import get_document_templates, read_record
 
+    from db import db
+    templates = get_document_templates(db)
 
-def readOption():
-    print("Read menu:")
-    print("1. Review")
-    print("2. Publisher")
-    print("3. Videogame")
-    print("4. User")
+    # show the available document types
+    print("Available document types to read:")
+    for i, doc_type in enumerate(templates.keys(), start=1):
+        print(f"{i}. {doc_type}")
+
 
     selected_option = int(input("Select the collection to consult: "))
 

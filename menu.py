@@ -1,16 +1,16 @@
-import json
-
-# importamos las operaciones del crud que ya definimos
-from create_menu import create_document
-from delete_menu import deleteOption
-from update_menu import update_document
-
-
 def convert_to_json(collection):
+    import json
     return json.dumps(collection, indent=4)
 
 
 def menu():
+    # importamos las operaciones del crud que ya definimos
+    from create_menu import create_menu
+    from update_menu import update_menu
+    from delete_menu import delete_menu
+    from read_menu import read_menu
+    from views_menu import views_menu
+    
     while True:
         print("""---------------------------------------
 Select wanted option:
@@ -18,21 +18,27 @@ Select wanted option:
 2. read a document
 3. Updated a document
 4. Delete a document
-5. Exit
+5. complex query (views)
+6. Exit
 ---------------------------------------""")
-        option1 = input("option:  ")
-        if (option1 == "1"):
+        option = input("option:  ")
+        if (option == "1"):
             print("create_menu")
-            create_document()
-        elif (option1 == "2"):
+            create_menu()
+        elif (option == "2"):
+            read_menu()
             print("read_menu")
-        elif (option1 == "3"):
+        elif (option == "3"):
             print("update_menu")
-            update_document()
-        elif (option1 == "4"):
+            update_menu()
+        elif (option == "4"):
             print("delete_menu")
-            deleteOption()
-        elif (option1 == "5"):
+            delete_menu()
+        elif (option == "5"):
+            print("complex query (views)")
+            views_menu()
+            break
+        elif (option == "6"):
             print("Exiting...")
             break
         else:

@@ -1,9 +1,10 @@
-from crud_operations import create_record, document_exists, get_document_templates
-from db import db
-
-
 # Function to create a document of any type
-def create_document():
+def create_menu():
+
+    from crud_operations import create_record, document_exists, get_document_templates
+    from db import db
+
+    
     # Obtener las plantillas de los documentos
     templates = get_document_templates(db)
 

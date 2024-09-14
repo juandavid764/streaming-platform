@@ -1,8 +1,5 @@
-
-from crud_operations import delete_record
-
-
-def deleteOption():
+def delete_menu():
+    from crud_operations import delete_record
     print("Delete menu:")
     print("1. Review")
     print("2. Publisher")

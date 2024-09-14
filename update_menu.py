@@ -1,10 +1,9 @@
-from create_menu import get_document_templates
-from db import db
-
 
 # Función para mostrar y actualizar un documento existente
-def update_document():
-    templates = get_document_templates(db)
+def update_menu():
+    from crud_operations import get_document_templates
+    from db import database
+    templates = get_document_templates(database)
 
     # show the available document types
     print("Available document types to update:")
@@ -19,7 +18,7 @@ def update_document():
     # show available documents of the selected type
     print(f"Available '{selected_type}' documents to update:")
     docs_of_selected_type = [
-        doc for doc in db if doc.startswith(f"{selected_type}_")]
+        doc for doc in database if doc.startswith(f"{selected_type}_")]
 
     if not docs_of_selected_type:
         print(f"No '{selected_type}' documents found to update.")
@@ -34,7 +33,7 @@ def update_document():
     selected_doc_id = docs_of_selected_type[doc_choice]
 
     # Get the document to update
-    document = db[selected_doc_id]
+    document = database[selected_doc_id]
 
     # show the document fields to update (excluding _id and _rev)
     print(
@@ -55,6 +54,6 @@ def update_document():
         new_value) if new_value.isdigit() else new_value
 
     # save the updated document
-    db.save(document)
+    database.save(document)
     print(
         f"Document '{selected_doc_id}' has been successfully updated with new value for '{field_to_update}'.")

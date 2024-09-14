@@ -245,4 +245,84 @@ def insert_data():
     create_record(template_user)
     create_record(template_videogame)
 
+    view_publishers = {
+        "_id": "_design/publishers",
+        "views": {
+            "by_id": {
+            "map": "function(doc) { if (doc.type === 'publisher' && doc._id) { emit(doc._id, doc); } }"
+            },
+            "by_name": {
+            "map": "function(doc) { if (doc.type === 'publisher' && doc.name) { emit(doc.name, doc); } }"
+            },
+            "by_totalsales": {
+            "map": "function(doc) { if (doc.type === 'publisher' && doc.totalsales > 1000) { emit(doc.totalsales, doc); } }"
+            }
+        },
+        "language": "javascript"
+    }
+    
+    view_reviews = {
+        "_id": "_design/reviews",
+        "views": {
+            "by_id": {
+                "map": "function(doc) { if (doc.type === 'review' && doc._id) { emit(doc._id, doc); } }"
+            },
+            "by_rating": {
+                "map": "function(doc) { if (doc.type === 'review' && doc.rating > 3) { emit(doc.rating, doc); } }"
+            },
+            "by_comment": {
+                "map": "function(doc) { if (doc.type === 'review' && doc.comment) { emit(doc.comment, doc); } }"
+            },
+            "by_user_id": {
+                "map": "function(doc) { if (doc.type === 'review' && doc.user_id) { emit(doc.user_id, doc); } }"
+            },
+            "by_videogame_id": {
+                "map": "function(doc) { if (doc.type === 'review' && doc.videogame_id) { emit(doc.videogame_id, doc); } }"
+            }
+        },
+        "language": "javascript"
+    }
 
+    view_users = {
+        "_id": "_design/users",
+        "views": {
+            "by_id": {
+                "map": "function(doc) { if (doc._id && doc.type === 'user') { emit(doc._id, doc); }}"
+            },
+            "by_name": {
+                "map": "function(doc) { if (doc.name && doc.type === 'user') { emit(doc.name, doc); }}"
+            },
+            "by_email": {
+                "map": "function(doc) { if (doc.email && doc.type === 'user') { emit(doc.email, doc); }}"
+            },
+            "by_country": {
+                "map": "function(doc) { if (doc.country && doc.type === 'user' && doc.country === 'Colombia') { emit(doc.country, doc); }}"
+            }
+        }
+    }
+
+    view_videogames = {
+        "_id": "_design/videogames",
+        "views": {
+            "by_id": {
+                "map": "function(doc) { if (doc._id && doc.type === 'videogame') { emit(doc._id, doc); }}"
+            },
+            "by_name": {
+                "map": "function(doc) { if (doc.name && doc.type === 'videogame') { emit(doc.name, doc); }}"
+            },
+            "by_genre": {
+                "map": "function(doc) { if (doc.genre && doc.type === 'videogame' && doc.genre === 'Adventure') { emit(doc.genre, doc); }}"
+            },
+            "by_units_sold": {
+                "map": "function(doc) { if (doc.units_sold && doc.type === 'videogame') { emit(doc.units_sold, doc); }}"
+            },
+            "by_publisher_id": {
+                "map": "function(doc) { if (doc.publisher_id && doc.type === 'videogame') { emit(doc.publisher_id, doc); }}"
+            }
+        }
+    }
+
+    create_record(view_reviews)
+    create_record(view_publishers)
+    create_record(view_users)
+    create_record(view_videogames)
