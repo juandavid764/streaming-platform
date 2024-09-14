@@ -1,18 +1,18 @@
 {
-    "_id": "_design/users",
-    "_rev": "1",
-    "views": {
-        "by_id": {
-            "map": "function(doc) { if (doc._id && doc.type === 'user') { emit(doc._id, doc); }}"
-        },
-        "by_name": {
-            "map": "function(doc) { if (doc.name && doc.type === 'user') { emit(doc.name, doc); }}"
-        },
-        "by_email": {
-            "map": "function(doc) { if (doc.email && doc.type === 'user') { emit(doc.email, doc); }}"
-        },
-        "by_country": {
-            "map": "function(doc) { if (doc.country && doc.type === 'user') { emit(doc.country, doc); }}"
-        }
+  "_id": "_design/users",
+  "_rev": "1",
+  "views": {
+    "by_id": {
+      "map": "function(doc) { if (doc._id && doc.type === 'user') { emit(doc._id, doc); }}"
+    },
+    "by_name": {
+      "map": "function(doc) { if (doc.name && doc.type === 'user') { emit(doc.name, doc); }}"
+    },
+    "by_email": {
+      "map": "function(doc) { if (doc.email && doc.type === 'user') { emit(doc.email, doc); }}"
+    },
+    "by_country": {
+      "map": "function(doc) { if (doc.country==='Colombia' && doc.type === 'user') { emit(doc.country, doc); }}"
     }
+  }
 }
